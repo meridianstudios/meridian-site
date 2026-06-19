@@ -2,7 +2,8 @@
 :root{
   --ink:#0a0d1a; --muted:#5b6172; --bg:#ffffff; --soft:#f6f7fb;
   --blue:#2d2bf5; --blue2:#5b8def; --line:#e8e9f1;
-  --maxw:1120px;
+  --maxw:1280px;
+  --pad:clamp(20px,4vw,64px);
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --logo:"Hammersmith One",var(--sans);
 }
@@ -10,12 +11,12 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
 
 /* ---------- nav ---------- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);transition:box-shadow .3s ease}
 .nav.scrolled{box-shadow:0 2px 24px rgba(10,13,26,.07)}
-.nav-inner{max-width:var(--maxw);margin:0 auto;width:100%;padding:13px 24px;display:flex;align-items:center;justify-content:space-between}
+.nav-inner{max-width:none;width:100%;padding:13px var(--pad);display:flex;align-items:center;justify-content:space-between}
 .brand{display:inline-flex;align-items:center;gap:10px;color:var(--ink)}
 .brand span{font-family:var(--logo);font-weight:400;font-size:22px;letter-spacing:.01em;line-height:1}
 .brand svg{border-radius:9px;flex:none}
@@ -38,7 +39,7 @@ img{max-width:100%;display:block}
 .hero{position:relative;min-height:92vh;display:flex;align-items:center;color:#fff;overflow:hidden;
   background:radial-gradient(1100px 620px at 72% -12%,#4a48ff 0%,rgba(74,72,255,0) 58%),linear-gradient(165deg,#191643 0%,#0a0a1e 72%)}
 .hero .star-deco{position:absolute;right:-90px;top:50%;transform:translateY(-50%);width:560px;height:560px;opacity:.10;pointer-events:none}
-.hero-inner{position:relative;max-width:var(--maxw);margin:0 auto;padding:120px 24px 90px;width:100%}
+.hero-inner{position:relative;max-width:none;padding:120px var(--pad) 90px;width:100%}
 .eyebrow{font-size:13px;font-weight:700;letter-spacing:.22em;color:var(--blue2);margin-bottom:22px}
 .hero h1{font-size:clamp(40px,6.4vw,76px);line-height:1.02;letter-spacing:-.035em;font-weight:800;max-width:14ch}
 .hero h1 span{color:var(--blue2)}
@@ -82,7 +83,7 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.08;letter-spacing:-.03em;font-we
 
 /* ---------- footer ---------- */
 .footer{background:#0a0a1e;color:#fff;padding:54px 0}
-.foot-inner{max-width:var(--maxw);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.foot-inner{max-width:none;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
 .foot-brand{color:#fff}
 .foot-brand span{font-family:var(--logo);font-weight:400;font-size:20px}
 .foot-links{display:flex;gap:22px;flex-wrap:wrap}
@@ -96,7 +97,7 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.08;letter-spacing:-.03em;font-we
 .page-hero h1{font-size:clamp(38px,6vw,68px);letter-spacing:-.035em;font-weight:800;line-height:1.03}
 .page-hero .lede{margin-top:20px}
 .page-hero .cta{margin-top:32px}
-.shot{margin:-46px auto 0;max-width:980px;padding:0 24px;position:relative;z-index:2}
+.shot{margin:-46px auto 0;max-width:980px;padding:0 var(--pad);position:relative;z-index:2}
 .shot-frame{border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 90px -30px rgba(10,13,26,.5);background:#0a0a1e}
 .shot-bar{height:34px;background:#11132a;display:flex;align-items:center;gap:8px;padding:0 14px}
 .shot-bar i{width:11px;height:11px;border-radius:50%;background:#3a3d55;display:block}
