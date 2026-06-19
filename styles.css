@@ -102,6 +102,7 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.08;letter-spacing:-.03em;font-we
 .page-hero h1{font-size:clamp(38px,6vw,68px);letter-spacing:-.035em;font-weight:800;line-height:1.03}
 .page-hero .lede{margin-top:20px}
 .page-hero .cta{margin-top:32px}
+.page-logo{width:84px;height:84px;border-radius:20px;display:block;margin:6px 0 22px;box-shadow:0 18px 44px rgba(0,0,0,.4)}
 .shot{margin:-46px auto 0;max-width:980px;padding:0 var(--pad);position:relative;z-index:2}
 .shot-frame{border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 90px -30px rgba(10,13,26,.5);background:#0a0a1e}
 .shot-bar{height:34px;background:#11132a;display:flex;align-items:center;gap:8px;padding:0 14px}
