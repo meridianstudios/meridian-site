@@ -16,7 +16,7 @@ img{max-width:100%;display:block}
 /* ---------- nav ---------- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);transition:box-shadow .3s ease}
 .nav.scrolled{box-shadow:0 2px 24px rgba(10,13,26,.07)}
-.nav-inner{max-width:var(--maxw);margin:0 auto;width:100%;padding:13px var(--pad);display:flex;align-items:center;justify-content:space-between}
+.nav-inner{max-width:none;width:100%;padding:13px var(--pad);display:flex;align-items:center;justify-content:space-between}
 .brand{display:inline-flex;align-items:center;gap:10px;color:var(--ink)}
 .brand span{font-family:var(--logo);font-weight:400;font-size:22px;letter-spacing:.01em;line-height:1}
 .brand svg{border-radius:9px;flex:none}
@@ -88,7 +88,7 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.08;letter-spacing:-.03em;font-we
 
 /* ---------- footer ---------- */
 .footer{background:#0a0a1e;color:#fff;padding:54px 0}
-.foot-inner{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.foot-inner{max-width:none;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
 .foot-brand{color:#fff}
 .foot-brand span{font-family:var(--logo);font-weight:400;font-size:20px}
 .foot-links{display:flex;gap:22px;flex-wrap:wrap}
@@ -119,6 +119,28 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.08;letter-spacing:-.03em;font-we
 .backlink{display:inline-flex;align-items:center;gap:7px;color:rgba(255,255,255,.7);font-weight:600;font-size:14.5px;margin-bottom:26px}
 .backlink:hover{color:#fff}
 
+/* ---------- Nova OS: overview + facts ---------- */
+.overview{display:grid;grid-template-columns:1.45fr .85fr;gap:52px;align-items:start}
+.ov-text{font-size:18px;color:var(--muted);line-height:1.75;margin-top:18px;max-width:62ch}
+.facts{list-style:none;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--bg)}
+.facts li{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:15px 18px;border-top:1px solid var(--line);font-size:14.5px}
+.facts li:first-child{border-top:none}
+.facts .k{color:var(--muted);font-weight:600}
+.facts .v{font-weight:700;text-align:right}
+
+/* ---------- Nova OS: downloads ---------- */
+.dl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.dl-card{border:1px solid var(--line);border-radius:18px;padding:22px;background:var(--bg);display:flex;flex-direction:column;gap:10px;transition:transform .28s ease,box-shadow .28s ease,border-color .28s}
+.dl-card:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(45,43,245,.16);border-color:color-mix(in srgb,var(--blue) 35%,var(--line))}
+.dl-os{font-weight:800;font-size:17px;letter-spacing:-.01em;margin-bottom:6px}
+.dl-os small{display:block;font-weight:600;font-size:12px;color:var(--muted);margin-top:2px}
+.dl-btn{display:block;text-align:center;padding:11px 14px;border-radius:10px;background:var(--blue);color:#fff;font-weight:700;font-size:13.5px;transition:transform .18s ease,filter .18s ease}
+.dl-btn:hover{transform:translateY(-2px);filter:brightness(1.1)}
+.dl-btn.ghost{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.dl-btn.ghost:hover{background:#eceef6}
+.dl-note{text-align:center;margin-top:30px;color:var(--muted);font-size:14.5px}
+.dl-note a{color:var(--blue);font-weight:600}
+
 /* ---------- reveal ---------- */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
 .reveal.in{opacity:1;transform:none}
@@ -138,6 +160,8 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.08;letter-spacing:-.03em;font-we
   .about-grid{grid-template-columns:1fr;gap:34px}
   .about-star{order:-1;justify-content:flex-start}
   .features{grid-template-columns:1fr}
+  .overview{grid-template-columns:1fr;gap:30px}
+  .dl-grid{grid-template-columns:repeat(2,1fr)}
   .section{padding:80px 0}
   .navlinks a:first-child{display:none}
 }
@@ -146,4 +170,5 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.08;letter-spacing:-.03em;font-we
   .navlinks a{padding:7px 9px;font-size:13.5px}
   .navlinks a:nth-child(4){display:none}
   .hero-inner{padding-top:130px}
+  .dl-grid{grid-template-columns:1fr}
 }

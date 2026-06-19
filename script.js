@@ -27,6 +27,23 @@
     }
   }
 
+  // Point Nova OS download buttons at the latest GitHub release (fallback links stay if this fails)
+  var dlEls = [].slice.call(document.querySelectorAll('[data-dl]'));
+  if (dlEls.length && window.fetch) {
+    fetch('https://api.github.com/repos/meridianstudios/nova-os/releases/latest')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (rel) {
+        if (!rel || !rel.assets) return;
+        dlEls.forEach(function (a) {
+          var key = (a.getAttribute('data-dl') || '').toLowerCase();
+          var hit = rel.assets.filter(function (x) { return x.name.toLowerCase().indexOf(key) !== -1; })[0];
+          if (hit) a.href = hit.browser_download_url;
+        });
+        [].slice.call(document.querySelectorAll('[data-latest-tag]')).forEach(function (t) { t.textContent = rel.tag_name; });
+      })
+      .catch(function () {});
+  }
+
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var els = document.querySelectorAll('.reveal');
   if (reduce || !('IntersectionObserver' in window)) {
