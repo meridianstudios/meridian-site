@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Auros — Severe Weather, Clarified · Meridian</title>
+  <meta name="description" content="Auros is a severe-weather app by Meridian — real-time NWS alerts with an EAS-style alarm, pro-grade NEXRAD Level 3 radar, SPC outlooks and live hurricane tracking. Free on every platform." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Auros — by Meridian" />
+  <meta property="og:description" content="Real-time severe-weather alerts, pro-grade radar, and storm outlooks in a fast, installable app." />
+  <meta property="og:image" content="/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Auros — by Meridian" />
+  <meta name="twitter:description" content="Severe weather, clarified. Alerts, radar, and outlooks you can trust." />
+  <meta name="twitter:image" content="/og.png" />
+  <meta name="theme-color" content="#0a0f22" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ---- Auros page accents (weather-themed, page-scoped) ---- */
+    .auros-hero{position:relative;overflow:hidden;background:linear-gradient(165deg,#0e1733 0%,#0a0f22 80%)}
+    .aurora{position:absolute;inset:0;pointer-events:none;
+      background:
+        radial-gradient(950px 480px at 16% -12%, rgba(45,43,245,.50), transparent 60%),
+        radial-gradient(880px 460px at 88% 4%, rgba(34,195,230,.36), transparent 62%);
+      animation:auroraShift 15s ease-in-out infinite alternate}
+    @keyframes auroraShift{0%{transform:translate3d(0,0,0) scale(1);opacity:.62}100%{transform:translate3d(0,-20px,0) scale(1.08);opacity:.9}}
+    .radar-deco{position:absolute;right:-130px;top:50%;transform:translateY(-50%);width:540px;height:540px;pointer-events:none;opacity:.18}
+    .radar-deco .ring{position:absolute;border:1.5px solid rgba(120,205,255,.55);border-radius:50%}
+    .radar-deco .r1{inset:0}.radar-deco .r2{inset:17%}.radar-deco .r3{inset:34%}.radar-deco .r4{inset:51%}
+    .radar-deco .cross{position:absolute;background:rgba(120,205,255,.32)}
+    .radar-deco .cx{left:0;right:0;top:50%;height:1.5px;transform:translateY(-.75px)}
+    .radar-deco .cy{top:0;bottom:0;left:50%;width:1.5px;transform:translateX(-.75px)}
+    .radar-deco .sweep{position:absolute;inset:0;border-radius:50%;
+      background:conic-gradient(from 0deg, rgba(80,220,255,.6), rgba(80,220,255,.05) 64deg, transparent 120deg, transparent 360deg);
+      animation:radarSweep 4.2s linear infinite}
+    @keyframes radarSweep{to{transform:rotate(360deg)}}
+    .auros-hero .wrap{position:relative;z-index:2}
+    .auros-mark{width:84px;height:84px;display:block;margin:6px 0 22px;border-radius:21px;
+      box-shadow:0 18px 46px rgba(34,195,230,.4)}
+    .badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:30px}
+    .pill{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;font-size:13px;font-weight:700;
+      background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.86)}
+    .pill svg{width:14px;height:14px;flex:none}
+    .feature .fic.cyan{background:color-mix(in srgb,#22c3e6 16%,transparent);color:#0bb3da}
+    .dl-meta{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:14px;font-size:13px;color:var(--muted)}
+    @media (prefers-reduced-motion:reduce){.aurora,.radar-deco .sweep{animation:none}}
+    @media (max-width:880px){.radar-deco{display:none}}
+  </style>
+</head>
+<body data-release-repo="meridianstudios/auros">
+  <!-- logo sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="logo-meridian" viewBox="0 0 40 40">
+      <rect width="40" height="40" rx="11" fill="#2d2bf5"/>
+      <polygon points="20,9 21.72,15.84 27.78,12.22 24.16,18.28 31,20 24.16,21.72 27.78,27.78 21.72,24.16 20,31 18.28,24.16 12.22,27.78 15.84,21.72 9,20 15.84,18.28 12.22,12.22 18.28,15.84" fill="#fff"/>
+    </symbol>
+    <symbol id="logo-auros" viewBox="0 0 40 40">
+      <rect width="40" height="40" rx="11" fill="url(#auros-grad)"/>
+      <defs><linearGradient id="auros-grad" x1="0" y1="0" x2="40" y2="40">
+        <stop offset="0" stop-color="#2d2bf5"/><stop offset="1" stop-color="#22c3e6"/>
+      </linearGradient></defs>
+      <circle cx="20" cy="20" r="5.2" fill="#fff"/>
+      <g stroke="#fff" stroke-width="2.4" stroke-linecap="round">
+        <line x1="20" y1="7" x2="20" y2="10.6"/><line x1="20" y1="29.4" x2="20" y2="33"/>
+        <line x1="7" y1="20" x2="10.6" y2="20"/><line x1="29.4" y1="20" x2="33" y2="20"/>
+        <line x1="10.8" y1="10.8" x2="13.4" y2="13.4"/><line x1="26.6" y1="26.6" x2="29.2" y2="29.2"/>
+        <line x1="29.2" y1="10.8" x2="26.6" y2="13.4"/><line x1="13.4" y1="26.6" x2="10.8" y2="29.2"/>
+      </g>
+    </symbol>
+  </svg>
+
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html" aria-label="Meridian — home">
+        <svg width="30" height="30"><use href="#logo-meridian"/></svg>
+        <span>meridian</span>
+      </a>
+      <nav class="navlinks" aria-label="Products">
+        <a href="index.html#products">Products</a>
+        <a href="auros.html" class="current">Auros</a>
+        <a href="novaos.html">Nova OS</a>
+        <a href="index.html#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="page-hero auros-hero">
+      <div class="aurora" aria-hidden="true"></div>
+      <div class="radar-deco" aria-hidden="true">
+        <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="ring r4"></div>
+        <div class="cross cx"></div><div class="cross cy"></div>
+        <div class="sweep"></div>
+      </div>
+      <div class="wrap">
+        <a class="backlink" href="index.html">← Meridian</a>
+        <svg class="auros-mark" viewBox="0 0 40 40" aria-label="Auros logo"><use href="#logo-auros"/></svg>
+        <p class="eyebrow reveal">MERIDIAN · PRODUCT</p>
+        <h1 class="reveal">Auros</h1>
+        <p class="lede reveal">Severe weather, clarified. Real-time alerts the second they're issued, professional-grade radar decoded right on your device, and the context to know when something's actually coming — in a fast, calm app you can trust.</p>
+        <div class="cta reveal">
+          <a class="btn btn-primary" href="#download">Get Auros ↓</a>
+          <a class="btn btn-ghost" href="https://auros.novalabsos.com" target="_blank" rel="noreferrer">Open in browser ↗</a>
+        </div>
+        <div class="badge-row reveal">
+          <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l3 7h7l-5.5 4.5L18.5 21 12 16.8 5.5 21l2-7.5L2 9h7z"/></svg>Free, no ads</span>
+          <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>Straight from NWS &amp; NEXRAD</span>
+          <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="16" rx="3"/></svg>Win · macOS · Linux · Android · Web</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="overview">
+          <div class="reveal">
+            <p class="kicker">WHAT IT IS</p>
+            <h2>Built for people who watch the sky.</h2>
+            <p class="ov-text">Auros is a severe-weather app that pulls straight from the source — the National Weather Service, the Storm Prediction Center, the National Hurricane Center, and raw NEXRAD radar — and presents it in a fast, calm, installable app. No ads, no upsells, no account required to start.</p>
+            <p class="ov-text">It's made to complement a weather radio, not replace it: the instant a warning drops, Auros takes over the screen and sounds an attention tone — and the rest of the time it stays quiet and out of your way.</p>
+          </div>
+          <ul class="facts reveal">
+            <li><span class="k">Platforms</span><span class="v">Win · macOS · Linux · Android · Web</span></li>
+            <li><span class="k">Sources</span><span class="v">NWS · SPC · NHC · NEXRAD</span></li>
+            <li><span class="k">Radar</span><span class="v">Level 3, on-device</span></li>
+            <li><span class="k">Account</span><span class="v">Optional · email / Google</span></li>
+            <li><span class="k">Price</span><span class="v">Free</span></li>
+            <li><span class="k">Latest</span><span class="v" data-latest-tag>v1.0.0</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="kicker">WHAT YOU GET</p>
+          <h2>Everything that matters when the weather turns.</h2>
+          <p class="section-sub">Serious data, presented simply — the kind of detail you'd expect from a desktop weather workstation, in your pocket.</p>
+        </div>
+        <div class="features">
+          <div class="feature reveal">
+            <div class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
+            <h3>Alerts the second they drop</h3>
+            <p>Live NWS watches and warnings for every place you track — with a full-screen takeover and EAS-style attention tone the moment a tornado or severe warning is issued. Quiet hours and per-event filters cut the noise; tornado warnings always break through.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="fic cyan"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/><path d="M12 12l6-4" stroke-linecap="round"/></svg></div>
+            <h3>Genuine pro-grade radar</h3>
+            <p>Single-site NEXRAD Level 3, decoded right on your device — base &amp; storm-relative velocity, dual-pol correlation coefficient, ZDR, KDP, hydrometeor classification, multiple elevation tilts, and a smooth time loop. Plus the national reflectivity mosaic and live warning polygons.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11l-1 8.5L19.5 10H13z"/></svg></div>
+            <h3>Know the risk in advance</h3>
+            <p>Storm Prediction Center categorical outlooks for Days 1–3, color-coded right on your home screen — so a marginal day and a moderate-risk day never look the same.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="fic cyan"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 8c4 0 5-3 9-3s5 3 9 3"/><path d="M3 16c4 0 5 3 9 3s5-3 9-3"/><circle cx="12" cy="12" r="2.4"/></svg></div>
+            <h3>Tropical, tracked live</h3>
+            <p>Active hurricanes and tropical systems straight from the National Hurricane Center — forecast cone, track, category and winds, and distance from you, drawn right on the radar.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="fic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 16a8 8 0 0 1 16 0"/><path d="M7 16a5 5 0 0 1 10 0"/><circle cx="12" cy="16" r="1.6" fill="currentColor"/><line x1="12" y1="16" x2="12" y2="21"/></svg></div>
+            <h3>Weather radio, finally sorted</h3>
+            <p>Every NWS transmitter in the country, ranked by the signal you'll <em>actually</em> get — not just raw distance — so you know the best channel for your spot, and a clear warning when reception is genuinely marginal.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="fic cyan"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 18a4 4 0 0 0 .5-8 6 6 0 0 0-11.5 1.5A3.5 3.5 0 0 0 6 18"/><path d="M12 13v7"/><path d="M9 17l3 3 3-3"/></svg></div>
+            <h3>Your places, on every device</h3>
+            <p>Save your locations and preferences to your account and they follow you across web, desktop, and phone. Sign in with email or Google — or skip it entirely and run fully local.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="download" data-release-repo="meridianstudios/auros">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="kicker">DOWNLOAD</p>
+          <h2>Get Auros</h2>
+          <p class="section-sub">Free for every platform — <span data-latest-tag>v1.0.0</span>, straight from GitHub Releases.</p>
+        </div>
+        <div class="dl-grid">
+          <div class="dl-card reveal">
+            <div class="dl-os">Windows<small>10 / 11 · 64-bit</small></div>
+            <a class="dl-btn" data-dl="setup.exe" href="https://github.com/meridianstudios/auros/releases/download/v1.0.0/Auros_1.0.0_x64-setup.exe">Installer (.exe)</a>
+            <a class="dl-btn ghost" data-dl="en-us.msi" href="https://github.com/meridianstudios/auros/releases/download/v1.0.0/Auros_1.0.0_x64_en-US.msi">.msi package</a>
+          </div>
+          <div class="dl-card reveal">
+            <div class="dl-os">macOS<small>Apple Silicon / Intel</small></div>
+            <a class="dl-btn" data-dl="aarch64.dmg" href="https://github.com/meridianstudios/auros/releases/download/v1.0.0/Auros_1.0.0_aarch64.dmg">Apple Silicon (.dmg)</a>
+            <a class="dl-btn ghost" data-dl="x64.dmg" href="https://github.com/meridianstudios/auros/releases/download/v1.0.0/Auros_1.0.0_x64.dmg">Intel (.dmg)</a>
+          </div>
+          <div class="dl-card reveal">
+            <div class="dl-os">Linux<small>AppImage · deb · rpm</small></div>
+            <a class="dl-btn" data-dl="appimage" href="https://github.com/meridianstudios/auros/releases/download/v1.0.0/Auros_1.0.0_amd64.AppImage">AppImage</a>
+            <a class="dl-btn ghost" data-dl="amd64.deb" href="https://github.com/meridianstudios/auros/releases/download/v1.0.0/Auros_1.0.0_amd64.deb">.deb</a>
+            <a class="dl-btn ghost" data-dl=".rpm" href="https://github.com/meridianstudios/auros/releases/download/v1.0.0/Auros-1.0.0-1.x86_64.rpm">.rpm</a>
+          </div>
+          <div class="dl-card reveal">
+            <div class="dl-os">Android<small>APK · sideload</small></div>
+            <a class="dl-btn" data-dl=".apk" href="https://github.com/meridianstudios/auros/releases/download/v1.0.0/auros.apk">Download APK</a>
+          </div>
+        </div>
+        <p class="dl-note">Prefer not to install? <a href="https://auros.novalabsos.com" target="_blank" rel="noreferrer">Open Auros in your browser ↗</a> &nbsp;·&nbsp; <a href="https://github.com/meridianstudios/auros/releases" target="_blank" rel="noreferrer">All releases &amp; changelog</a></p>
+        <p class="dl-meta"><span>Installers are unsigned — your OS may warn once (Windows: <b>More info → Run anyway</b>; macOS: <b>right-click → Open</b>).</span></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="foot-inner">
+      <a class="brand foot-brand" href="index.html">
+        <svg width="26" height="26"><use href="#logo-meridian"/></svg>
+        <span>meridian</span>
+      </a>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="index.html#products">Products</a>
+        <a href="auros.html">Auros</a>
+        <a href="novaos.html">Nova OS</a>
+        <a href="index.html#about">About</a>
+      </nav>
+      <p class="copy">© 2026 Meridian Development Studios · Built with care.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

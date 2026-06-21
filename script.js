@@ -27,10 +27,13 @@
     }
   }
 
-  // Point Nova OS download buttons at the latest GitHub release (fallback links stay if this fails)
+  // Point download buttons at the latest GitHub release (fallback links stay if this fails).
+  // Repo is read from a [data-release-repo] attribute on the page; defaults to Nova OS.
   var dlEls = [].slice.call(document.querySelectorAll('[data-dl]'));
   if (dlEls.length && window.fetch) {
-    fetch('https://api.github.com/repos/meridianstudios/nova-os/releases/latest')
+    var repoEl = document.querySelector('[data-release-repo]');
+    var repo = (repoEl && repoEl.getAttribute('data-release-repo')) || 'meridianstudios/nova-os';
+    fetch('https://api.github.com/repos/' + repo + '/releases/latest')
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (rel) {
         if (!rel || !rel.assets) return;
