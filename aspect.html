@@ -40,7 +40,8 @@
       background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.86)}
     .pill svg{width:14px;height:14px;flex:none}
     .feature .fic.blue{background:color-mix(in srgb,#5b8def 18%,transparent);color:#5b8def}
-    .dl-meta{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:14px;font-size:13px;color:var(--muted)}
+    .dl-meta{display:block;max-width:640px;margin:14px auto 0;font-size:13px;line-height:1.6;color:var(--muted);text-align:center}
+    .dl-meta code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;background:rgba(127,127,127,.16);border:1px solid rgba(127,127,127,.28);padding:2px 7px;border-radius:6px;white-space:nowrap}
     @media (prefers-reduced-motion:reduce){.aperture .iris{animation:none}}
     @media (max-width:880px){.aperture{display:none}}
   </style>
@@ -184,7 +185,7 @@
           </div>
         </div>
         <p class="dl-note"><a href="https://github.com/meridianstudios/aspect/releases" target="_blank" rel="noreferrer">All releases &amp; changelog ↗</a></p>
-        <p class="dl-meta"><span>Installers are unsigned, so your OS may warn once (Windows: <b>More info → Run anyway</b>; macOS: <b>right-click → Open</b>).</span></p>
+        <p class="dl-meta">The apps aren't code-signed yet, so your OS warns once on first launch. The app isn't actually damaged or unsafe, this just clears Apple and Microsoft's flag for unsigned apps. <b>Windows:</b> click More info, then Run anyway. <b>macOS:</b> if it says Aspect is "damaged", drag it into Applications, then run <code>xattr -dr com.apple.quarantine /Applications/Aspect.app</code> in Terminal and open it.</p>
       </div>
     </section>
   </main>
